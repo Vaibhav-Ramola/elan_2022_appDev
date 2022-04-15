@@ -22,6 +22,7 @@ class Messages extends StatelessWidget {
           );
         }
         List<MsgInstance> msgList = chatSnapshot.data as List<MsgInstance>;
+
         return RefreshIndicator(
           onRefresh: () {
             return Future.delayed(

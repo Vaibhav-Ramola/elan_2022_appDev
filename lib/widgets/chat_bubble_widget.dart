@@ -11,7 +11,7 @@ class ChatBubble extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Align(
-        alignment: byMe? Alignment.bottomRight: Alignment.bottomLeft,
+        alignment: byMe ? Alignment.bottomRight : Alignment.bottomLeft,
         child: Container(
           margin: byMe
               ? EdgeInsets.fromLTRB(
@@ -35,11 +35,10 @@ class ChatBubble extends StatelessWidget {
               style: BorderStyle.solid,
             ),
           ),
-          child: Expanded(
-            child: Text(
-              msg,
-              style: const TextStyle(),
-            ),
+          child: Text(
+            msg,
+            style: const TextStyle(),
+            textAlign: TextAlign.right,
           ),
         ),
       ),

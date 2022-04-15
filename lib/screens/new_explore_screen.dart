@@ -18,7 +18,7 @@ class _NewExploreScreenState extends State<NewExploreScreen> {
     return Scaffold(
       body: StreamBuilder(
         stream: Provider.of<UserMessages>(context, listen: false)
-            .fetchAndSetUsersStream,
+            .fetchAndSetUsersStream(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting ||
               !snapshot.hasData) {

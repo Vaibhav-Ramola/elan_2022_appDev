@@ -84,7 +84,6 @@ class _UserMessageScreenState extends State<UserMessageScreen> {
                             hisId,
                             msg,
                           );
-                          initState();
                         }
                       },
                       icon: const Icon(

@@ -20,7 +20,7 @@ class _AuthCardState extends State<AuthCard> {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
-      elevation: 5,
+      elevation: 10,
       child: Container(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -78,7 +78,9 @@ class _AuthCardState extends State<AuthCard> {
                   );
                 }
               },
-              child: const Text("Let's go !!!"),
+              child: const Text(
+                "Let's go !!!",
+              ),
             ),
           ],
         ),

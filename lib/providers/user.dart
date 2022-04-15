@@ -22,8 +22,20 @@ class UserMessages with ChangeNotifier {
     return [..._users];
   }
 
+  Future<void> loginUser(String email, String password) async {
+    final url = Uri.parse("");
+    await http.post(url);
+    // ************** Add loginUser logic here **************** //
+  }
+
+  Future<void> signupUser(String email, String password) async {
+    final url = Uri.parse("");
+
+    // *************** Add signupUser logic here *************** //
+  }
+
   Future<void> addUser(String user) async {
-    _myUser = User(userId: "", isOnline: true, userName: user);
+    _myUser.userName = user;
     final url = Uri.parse(
         "https://elan-app-cec32-default-rtdb.firebaseio.com/users.json");
     await http.post(
@@ -43,14 +55,13 @@ class UserMessages with ChangeNotifier {
 
   Future<void> deleteUser(String userId) async {
     final url = Uri.parse(
-        "https://elan-app-cec32-default-rtdb.firebaseio.com/users/$userId.json");
-    await http.delete(url); //.then(
-    //(value) => //print("User Deleted"),
-    //);
+        "https://elan-app-cec32-default-rtdb.firebaseio.com/users/${_myUser.userId}.json");
+    await http.delete(url);
   }
 
-  Stream<List<User>> get fetchAndSetUsersStream async* {
-    yield await fetchAndSetUsers();
+  Stream<List<User>> fetchAndSetUsersStream() {
+    return Stream.periodic(const Duration(seconds: 1))
+        .asyncMap((event) => fetchAndSetUsers());
   }
 
   Future<List<User>> fetchAndSetUsers() async {
@@ -93,22 +104,26 @@ class UserMessages with ChangeNotifier {
         (event) => fetchAndSetMessages(otherUserId),
       );
 
-  Stream<List<MsgInstance>> getMsgListStream(String otherUserId) {
-    return Stream<List<MsgInstance>>.fromFuture(
-      fetchAndSetMessages(otherUserId),
-    );
-  }
+  // Stream<List<MsgInstance>> getMsgListStream(String otherUserId, String myId) {
+  //   return Stream<List<MsgInstance>>.fromFuture(
+  //     fetchAndSetMessages(otherUserId),
+  //   );
+  // }
 
   Future<List<MsgInstance>> fetchAndSetMessages(String otherUserId) async {
     List<MsgInstance> msgList = [];
-    // print("MY ID : " + _myUser.userId);
-    // print("Other user ID : " + otherUserId);
+
+    // ******* Print
+    //print("MY ID : " + _myUser.userid);
+    //print("Other user ID : " + otherUserId);
+    // ******* Print
+
     final url = Uri.parse(
-      "https://elan-app-cec32-default-rtdb.firebaseio.com/users/${_myUser.userId}/messages/$otherUserId.json",
+      "https://elan-app-cec32-default-rtdb.firebaseio.com/users/${_myUser.userid}/messages/$otherUserId.json",
     );
     try {
       final response = await http.get(url);
-      // print("value of response : " + response.body);
+      //print("value of response : " + response.body);
       if (response.contentLength == 0) {
         return msgList;
       }
@@ -161,7 +176,7 @@ class UserMessages with ChangeNotifier {
         ),
       );
     } catch (e) {
-      print(e.toString());
+      //print(e.toString());
     }
   }
 
@@ -197,6 +212,8 @@ class UserMessages with ChangeNotifier {
     } catch (e) {
       // print(e.toString());
     }
+
+    return Future.value();
   }
 
   String get myUserName {

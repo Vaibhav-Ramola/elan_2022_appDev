@@ -1,7 +1,7 @@
 class User {
-  final String userId;
+  String userId;
   bool isOnline;
-  final String userName;
+  String userName;
 
   User({
     required this.userId,

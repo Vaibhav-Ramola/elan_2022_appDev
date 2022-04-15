@@ -40,25 +40,37 @@ class _LogoWidgetState extends State<LogoWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
+    return Container(
+      padding: const EdgeInsets.all(18.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[300],
+        // border: Border.all(
+        //   color: Colors.blue,
+        //   style: BorderStyle.solid,
+        //   width: 1.5,
+        // ),
         borderRadius: BorderRadius.circular(10.0),
-      ),
-      elevation: 10.0,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(10.0),
-        child: Container(
-          padding: const EdgeInsets.all(14.0),
-          height: 180,
-          width: 240,
-          color: Colors.white,
-          child: const Center(
-            child: Text(
-              "AnimosChat",
-              style: TextStyle(fontSize: 50, color: Colors.blue),
-            ),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 15,
+            //blurStyle: BlurStyle.outer,
+            color: Colors.grey[600]!,
+            spreadRadius: 10,
+            offset: const Offset(4, 4),
           ),
-        ),
+          BoxShadow(
+            blurRadius: 10.0,
+            //blurStyle: BlurStyle.outer,
+            color: Colors.grey[50]!,
+            spreadRadius: 4.0,
+            offset: const Offset(-4, -4),
+          )
+        ],
+      ),
+      child: const Text(
+        "AmiGos Chat",
+        style: TextStyle(
+            fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blue),
       ),
     );
   }
